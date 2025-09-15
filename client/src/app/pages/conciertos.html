@@ -1,0 +1,9 @@
+<h2>🎤 Conciertos disponibles</h2>
+<a routerLink="/concerts/new">➕ Nuevo Concierto</a>
+<ul>
+  <li *ngFor="let concert of concerts">
+    <b>{{ concert.title }}</b> - {{ concert.date }} @ {{ concert.venue }}
+    <a [routerLink]="['/concerts/edit', concert.id]">Editar</a> |
+    <button (click)="deleteConcert(concert.id)">Eliminar</button>
+  </li>
+</ul>
