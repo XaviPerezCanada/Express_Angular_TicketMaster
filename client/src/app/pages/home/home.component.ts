@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConciertosComponent } from '../conciertos';
 
 @Component({
   selector: 'app-home',
-  template: '' // no necesita template
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+  standalone: true,
+  imports: [
+
+    ConciertosComponent,
+
+  ]
 })
 export class HomeComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { Concert } from '../model/concert.model';
   providedIn: 'root'
 })
 export class ConcertsService {
-  private apiUrl = 'http://localhost:3000/concerts'; // JSON Server o API backend
+  private apiUrl = 'http://localhost:8080/concerts'; // Tu backend Express + Mongo
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class ConcertsService {
     return this.http.get<Concert[]>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Concert> {
+  getById(id: string): Observable<Concert> {
     return this.http.get<Concert>(`${this.apiUrl}/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class ConcertsService {
     return this.http.post<Concert>(this.apiUrl, concert);
   }
 
-  update(id: number, concert: Concert): Observable<Concert> {
+  update(id: string, concert: Concert): Observable<Concert> {
     return this.http.put<Concert>(`${this.apiUrl}/${id}`, concert);
   }
 
-  delete(id: number): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const usuarioRoutes = require('./app/routes/usuarios.routes');
+const conciertosRoutes = require('./app/router/conciertos.routes');
+app.use('/concerts', conciertosRoutes);
+
 
 const cors = require("cors");
 

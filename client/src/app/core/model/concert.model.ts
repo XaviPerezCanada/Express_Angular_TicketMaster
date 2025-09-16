@@ -1,6 +1,8 @@
 export interface Concert {
-  id: number;
-  title: string;
-  date: string;   // formato ISO yyyy-mm-dd
-  venue: string;  // lugar del concierto
+  _id?: string;     
+  nombre: string;
+  artista: string;
+  fecha: string;   
+  lugar: string;
+  precio: number;
 }
