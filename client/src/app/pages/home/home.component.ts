@@ -13,12 +13,4 @@ import { ConciertosComponent } from '../conciertos';
 
   ]
 })
-export class HomeComponent implements OnInit {
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    // Redirigir automáticamente a /concerts
-    this.router.navigate(['/concerts']);
-  }
-}
+export class HomeComponent {}

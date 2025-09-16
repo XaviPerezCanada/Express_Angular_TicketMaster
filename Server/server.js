@@ -1,22 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const usuarioRoutes = require('./app/routes/usuarios.routes');
-const conciertosRoutes = require('./app/router/conciertos.routes');
-app.use('/concerts', conciertosRoutes);
-
-
 const cors = require("cors");
 
-const app = express();
+// Importar rutas
+const usuarioRoutes = require('./app/routes/usuarios.routes');
+const conciertosRoutes = require('./app/routes/conciertos.routes');
+
+const app = express();   // ✅ primero declaramos la app
+const PORT = 8080;
 
 // Habilita CORS solo para Angular (ejemplo: http://localhost:4200)
 app.use(cors({
-  origin: "http://localhost:4200", // tu frontend de Angular
+  origin: "http://localhost:4200", // tu frontend Angular
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true // si usas cookies o autenticación
+  credentials: true
 }));
-
-const PORT = 8080;
 
 // Middleware
 app.use(express.json());
@@ -27,8 +25,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/miapp')
   .catch(err => console.error(err));
 
 // Rutas
-app.use('/', usuarioRoutes);
+app.use('/usuarios', usuarioRoutes);
+app.use('/concerts', conciertosRoutes);
 
+// Arrancar servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
