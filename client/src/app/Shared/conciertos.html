@@ -1,0 +1,22 @@
+<div *ngIf="loading">Loading concerts...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!loading && !error">
+    <h1>Proximos conciertos</h1>
+    <ul class="concerts-list">
+       @for (concert of concerts; track trackById) {
+            <li class="concert-item">
+                <div class="concert-info">
+                    <h3 class="concert-name">{{ concert.nombre }}</h3>
+                    <div class="concert-details">
+                        <span class="concert-date">{{ concert.fecha | date:'shortDate' }}</span>
+                        <span class="concert-location">{{ concert.lugar }}</span>
+                    </div>
+                </div>
+                <button class="delete-btn" (click)="deleteConcert(concert._id!)">
+                    Delete
+                </button>
+            </li>
+        }
+    </ul>
+</div>
+

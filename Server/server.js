@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 
 // Importar rutas
-const usuarioRoutes = require('./app/routes/usuarios.routes');
+
 const conciertosRoutes = require('./app/routes/conciertos.routes');
 
 const app = express();   // ✅ primero declaramos la app
-const PORT = 8080;
+const PORT = 3001;
 
 // Habilita CORS solo para Angular (ejemplo: http://localhost:4200)
 app.use(cors({
@@ -25,7 +25,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/miapp')
   .catch(err => console.error(err));
 
 // Rutas
-app.use('/usuarios', usuarioRoutes);
+
 app.use('/concerts', conciertosRoutes);
 
 // Arrancar servidor

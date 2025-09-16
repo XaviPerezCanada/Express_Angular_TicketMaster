@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ConciertosComponent } from '../pages/conciertos';
-import { ConciertosFormComponent } from '../pages/concert-form';
+import { ConciertosComponent } from '../Shared/conciertos';
+import { ConciertosFormComponent } from '../Shared/concert-form';
 import { HomeComponent } from '../pages/home/home.component'; // importamos
 
 export const appRoutes: Routes = [

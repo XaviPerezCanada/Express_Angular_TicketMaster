@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ConcertsService } from '../core/services/concert.services';
+import { ConcertsService } from '../core/services/concerts.service';
 import { Concert } from '../core/model/concert.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Concert } from '../core/model/concert.model';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './conciertos.html'
+  ,  styleUrls: ['./conciertos.css']
 })
 export class ConciertosComponent implements OnInit {
   concerts: Concert[] = [];
@@ -28,8 +29,8 @@ export class ConciertosComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        console.error('Error al cargar conciertos', err);
-        this.error = 'No se pudieron cargar los conciertos';
+        console.error('Error loading concerts', err);
+        this.error = 'Failed to load concerts';
         this.loading = false;
       }
     });
@@ -39,11 +40,14 @@ export class ConciertosComponent implements OnInit {
     this.concertsService.delete(id).subscribe({
       next: () => {
         this.concerts = this.concerts.filter(c => c._id !== id);
-        console.log('Concierto eliminado:', id);
       },
       error: (err) => {
-        console.error('Error al eliminar concierto', err);
+        console.error('Error deleting concert', err);
       }
     });
   }
+  trackById(index: number, concert: Concert) {
+  return concert._id;
+}
+  
 }

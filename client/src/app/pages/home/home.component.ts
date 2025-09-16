@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConciertosComponent } from '../conciertos';
+import { Component } from '@angular/core';
+import { ConciertosComponent } from '../../Shared/conciertos';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [
-
-    ConciertosComponent,
-
-  ]
+  imports: [ConciertosComponent],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {}
