@@ -1,8 +1,8 @@
 export interface Concert {
-  _id?: string;  // opcional, ya que puede no estar presente al crear un nuevo concierto
+  _id?: string;  
   nombre: string;
   artista: string;
-  fecha: string | Date;  // puedes usar string si viene del JSON, o Date si lo transformas
+  fecha: string | Date;  
   lugar: string;
   precio: number;
 }
