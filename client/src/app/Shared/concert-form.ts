@@ -1,31 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ConcertsService } from '../core/services/concerts.service';
+import { Concert } from '../core/model/concert.model';
 
 @Component({
-  selector: 'app-conciertos-form',
+  selector: 'app-concert-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './concert-form.html'
 })
-export class ConciertosFormComponent {
-  concert = { id: 0, title: '', date: '', venue: '' };
-  isEdit = false; // <-- faltaba
+export class ConcertFormComponent implements OnInit {
+  concertId?: string;
+  form!: FormGroup; // 👈 declaramos pero no inicializamos aquí
 
-  constructor(private route: ActivatedRoute) {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.isEdit = true;
-      // aquí cargarías el concierto desde el servicio usando el id
+  constructor(
+    private fb: FormBuilder, // 👈 Angular inyecta el FormBuilder
+    private concertService: ConcertsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    // 👇 aquí ya puedes usar el fb sin errores
+    this.form = this.fb.group({
+      nombre: ['', Validators.required],
+      artista: ['', Validators.required],
+      fecha: ['', Validators.required],
+      lugar: ['', Validators.required],
+      precio: [0, [Validators.required, Validators.min(0)]],
+    });
+
+    this.concertId = this.route.snapshot.paramMap.get('id') || undefined;
+
+    if (this.concertId) {
+      this.concertService.getConcertById(this.concertId).subscribe(concert => {
+        this.form.patchValue(concert);
+      });
     }
   }
 
-  saveConcert() {
-    if (this.isEdit) {
-      console.log('Actualizando concierto:', this.concert);
-    } else {
-      console.log('Creando concierto:', this.concert);
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      if (this.concertId) {
+        this.concertService
+          .updateConcert(this.concertId, this.form.value as Concert)
+          .subscribe(() => this.router.navigateByUrl('/concerts'));
+      } else {
+        this.concertService
+          .createConcert(this.form.value as Concert)
+          .subscribe(() => this.router.navigateByUrl('/concerts'));
+      }
     }
   }
 }

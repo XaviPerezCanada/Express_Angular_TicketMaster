@@ -1,17 +1,16 @@
 import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http'; // <- importa esto
+import { provideHttpClient } from '@angular/common/http'; 
 import { App } from './app/app';
-import { HomeComponent } from './app/pages/home/home.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent }
-];
+import { appRoutes } from './app/router/app.routes';
+
+
 
 bootstrapApplication(App, {
   providers: [
-    provideRouter(routes),
-    provideHttpClient()  // <- esto da el provider para HttpClient
+    provideRouter(appRoutes),
+    provideHttpClient()  
   ]
 }).catch(err => console.error(err));

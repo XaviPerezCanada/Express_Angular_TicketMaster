@@ -35,6 +35,10 @@ export class ConciertosComponent implements OnInit {
       }
     });
   }
+  editConcert(id: string): void {
+    // Implement navigation to edit page or open edit modal
+    console.log('Edit concert with id:', id);
+  }
 
   deleteConcert(id: string): void {
     this.concertsService.delete(id).subscribe({

@@ -3,7 +3,7 @@
 <div *ngIf="!loading && !error">
     <h1>Proximos conciertos</h1>
     <ul class="concerts-list">
-       @for (concert of concerts; track trackById) {
+      @for (concert of concerts; track trackById($index, concert)) {
             <li class="concert-item">
                 <div class="concert-info">
                     <h3 class="concert-name">{{ concert.nombre }}</h3>
@@ -12,6 +12,9 @@
                         <span class="concert-location">{{ concert.lugar }}</span>
                     </div>
                 </div>
+                <button class="edit-btn" (click)="editConcert(concert._id!)">
+                    Edit
+                </button>
                 <button class="delete-btn" (click)="deleteConcert(concert._id!)">
                     Delete
                 </button>
