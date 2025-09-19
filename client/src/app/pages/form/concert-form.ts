@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './concert-form.html'
+  ,styleUrls: ['./concert-form.css']
 })
 export class ConcertFormComponent implements OnInit {
   concertId?: string;
