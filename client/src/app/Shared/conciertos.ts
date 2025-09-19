@@ -15,6 +15,7 @@ export class ConciertosComponent implements OnInit {
   concerts: Concert[] = [];
   loading = true;
   error: string | null = null;
+  router: any;
 
   constructor(private concertsService: ConcertsService) {}
 
@@ -36,7 +37,9 @@ export class ConciertosComponent implements OnInit {
     });
   }
   editConcert(id: string): void {
-    // Implement navigation to edit page or open edit modal
+    // this.router.navigate(['/concerts/edit', id]);
+ 
+    
     console.log('Edit concert with id:', id);
   }
 

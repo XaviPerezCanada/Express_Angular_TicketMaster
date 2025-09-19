@@ -2,6 +2,9 @@
 <div *ngIf="error">{{ error }}</div>
 <div *ngIf="!loading && !error">
     <h1>Proximos conciertos</h1>
+    <button class="new-concert-btn" [routerLink]="['/concerts/new']">
+        Nuevo concierto
+    </button>
     <ul class="concerts-list">
       @for (concert of concerts; track trackById($index, concert)) {
             <li class="concert-item">
@@ -12,7 +15,7 @@
                         <span class="concert-location">{{ concert.lugar }}</span>
                     </div>
                 </div>
-                <button class="edit-btn" (click)="editConcert(concert._id!)">
+                <button class="edit-btn" [routerLink]="['/concerts/edit', concert._id]">
                     Edit
                 </button>
                 <button class="delete-btn" (click)="deleteConcert(concert._id!)">

@@ -13,17 +13,17 @@ import { Concert } from '../core/model/concert.model';
 })
 export class ConcertFormComponent implements OnInit {
   concertId?: string;
-  form!: FormGroup; // 👈 declaramos pero no inicializamos aquí
+  form!: FormGroup; // 
 
   constructor(
-    private fb: FormBuilder, // 👈 Angular inyecta el FormBuilder
+    private fb: FormBuilder, 
     private concertService: ConcertsService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    // 👇 aquí ya puedes usar el fb sin errores
+    
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       artista: ['', Validators.required],
