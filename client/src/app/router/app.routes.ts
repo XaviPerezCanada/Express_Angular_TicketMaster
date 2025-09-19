@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ConcertFormComponent } from '../Shared/concert-form';
+import { ConcertFormComponent } from '../pages/form/concert-form';
 import { HomeComponent } from '../pages/home/home.component'; // importamos
 
 export const appRoutes: Routes = [

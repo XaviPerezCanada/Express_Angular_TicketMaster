@@ -1,29 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
+require('dotenv').config();
 
-// Importar rutas
+
 
 const conciertosRoutes = require('./app/routes/conciertos.routes');
 
-const app = express();   // ✅ primero declaramos la app
-const PORT = 3001;
+const app = express();   
+const PORT = process.env.PORT;
 
-// Habilita CORS solo para Angular (ejemplo: http://localhost:4200)
+
 app.use(cors({
-  origin: "http://localhost:4200", // tu frontend Angular
+  origin: process.env.CORS_ORIGIN || '*',
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
-// Middleware
+
 app.use(express.json());
 
 // Conexión MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/miapp')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conectado a MongoDB'))
   .catch(err => console.error(err));
-
 // Rutas
 
 app.use('/concerts', conciertosRoutes);
