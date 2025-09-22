@@ -22,8 +22,8 @@ export class ConcertsService {
   }
 
   /** Obtener un concierto por ID */
-  getConcertById(id: string): Observable<Concert> {
-    return this.http.get<Concert>(`${this.apiUrl}/${id}`);
+  getConcertById(slug: string): Observable<Concert> {
+    return this.http.get<Concert>(`${this.apiUrl}/${slug}`);
   }
 
   /** Crear un nuevo concierto */
@@ -32,12 +32,12 @@ export class ConcertsService {
   }
 
   /** Actualizar un concierto existente */
-  updateConcert(id: string, concert: Concert): Observable<Concert> {
-    return this.http.put<Concert>(`${this.apiUrl}/${id}`, concert);
+  updateConcert(slug: string, concert: Concert): Observable<Concert> {
+    return this.http.put<Concert>(`${this.apiUrl}/${slug}`, concert);
   }
 
   /** Eliminar un concierto */
-  delete(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  delete(slug: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${slug}`);
   }
 }

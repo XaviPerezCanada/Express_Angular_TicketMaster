@@ -1,5 +1,6 @@
 export interface Concert {
-  _id?: string;  
+  //_id?: string;  
+  slug: string;
   nombre: string;
   artista: string;
   fecha: string | Date;  

@@ -15,10 +15,10 @@
                         <span class="concert-location">{{ concert.lugar }}</span>
                     </div>
                 </div>
-                <button class="edit-btn" [routerLink]="['/concerts/edit', concert._id]">
+                <button class="edit-btn" [routerLink]="['/concerts/edit', concert.slug]">
                     Edit
                 </button>
-                <button class="delete-btn" (click)="deleteConcert(concert._id!)">
+                <button class="delete-btn" (click)="deleteConcert(concert.slug!)">
                     Delete
                 </button>
             </li>

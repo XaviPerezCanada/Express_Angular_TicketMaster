@@ -43,10 +43,10 @@ export class ConciertosComponent implements OnInit {
     console.log('Edit concert with id:', id);
   }
 
-  deleteConcert(id: string): void {
-    this.concertsService.delete(id).subscribe({
+  deleteConcert(slug: string): void {
+    this.concertsService.delete(slug).subscribe({
       next: () => {
-        this.concerts = this.concerts.filter(c => c._id !== id);
+        this.concerts = this.concerts.filter(c => c.slug !== slug);
       },
       error: (err) => {
         console.error('Error deleting concert', err);
@@ -54,7 +54,7 @@ export class ConciertosComponent implements OnInit {
     });
   }
   trackById(index: number, concert: Concert) {
-  return concert._id;
+  return concert.slug;
 }
   
 }

@@ -13,7 +13,7 @@ exports.findAll = async (req, res) => {
 // Obtener un concierto por ID
 exports.findOne = async (req, res) => {
   try {
-    const concierto = await Concierto.findById(req.params.id);
+    const concierto = await Concierto.findById(req.params.slug);
     if (!concierto) return res.status(404).json({ message: "Concierto no encontrado" });
     res.json(concierto);
   } catch (err) {
@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
 // Actualizar concierto
 exports.update = async (req, res) => {
   try {
-    const updated = await Concierto.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updated = await Concierto.findByIdAndUpdate(req.params.slug, req.body, { new: true });
     if (!updated) return res.status(404).json({ message: "Concierto no encontrado" });
     res.json(updated);
   } catch (err) {
@@ -46,7 +46,7 @@ exports.update = async (req, res) => {
 // Eliminar concierto
 exports.delete = async (req, res) => {
   try {
-    const deleted = await Concierto.findByIdAndDelete(req.params.id);
+    const deleted = await Concierto.findByIdAndDelete(req.params.slug);
     if (!deleted) return res.status(404).json({ message: "Concierto no encontrado" });
     res.sendStatus(204);
   } catch (err) {
